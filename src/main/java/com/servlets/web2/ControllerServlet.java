@@ -1,7 +1,8 @@
-package com.example.web2;
+package com.servlets.web2;
 
 import java.io.*;
 
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
@@ -13,17 +14,25 @@ public class ControllerServlet extends HttpServlet {
         message = "Hello World!";
     }
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response){
-        getServletContext().getRequestDispatcher("/oops.jsp").forward(request, response);
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        getServletContext().getRequestDispatcher("/oopsies.jsp").forward(request, response);
     }
-    public void doPost(HttpServletRequest request, HttpServletResponse response){
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
-        request.setAttribute("scriptTime", System.nanoTime()*1000);
+        request.setAttribute("scriptTime", System.nanoTime());
         String x = request.getParameter("x");
         String y = request.getParameter("y");
         String R = request.getParameter("R");
+
+        if(x == null && y == null && R == null){
+            getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+        }else {
+            getServletContext().getRequestDispatcher("/area-check-servlet").forward(request, response);
+        }
     }
 
-    public void destroy() {
-    }
+
+
 }
