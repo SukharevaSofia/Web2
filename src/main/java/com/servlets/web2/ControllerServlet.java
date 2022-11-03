@@ -21,7 +21,7 @@ public class ControllerServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
-        request.setAttribute("scriptTime", System.nanoTime());
+        request.setAttribute("workingTime", System.nanoTime());
         String x = request.getParameter("x");
         String y = request.getParameter("y");
         String R = request.getParameter("R");
