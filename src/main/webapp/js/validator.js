@@ -159,7 +159,7 @@ function sendRequest(r_handler) {
 
     request.addEventListener("readystatechange", () => {
         if (request.readyState === 4 && request.status === 200) {
-            r_handler(request);
+            Handler(request);
         }
     });
 
@@ -187,8 +187,8 @@ function sendData() {
 submitButton.addEventListener('click', sendData);
 
 function addDots(x, y, r){
-    let coordinateX = x > 5 || x < -3? x: x >= 0? 200 + (x * 120)/r: 200 + (x * 120)/r
-    let coordinateY = y > 5 || y < -5 ? y:  y >= 0? 140 - (y * 120)/r: 140 - (y * 120)/r
+    let coordinateX = x > 5 || x < -3? x: 200 + (x * 120)/r
+    let coordinateY = y > 5 || y < -5 ? y: 140 - (y * 120)/r
     drawCircle(coordinateX, coordinateY, 1, 0, 2*Math.PI)
 }
 
@@ -196,7 +196,7 @@ function resetDots(request){
     if(request !== undefined) {
         request.forEach(function (data){
             let dot = JSON.parse(data)
-            addDots(dot.x, dot.y, dot.R)
+            addDots(dot.x, dot.y, dot.r)
         })
     }
 }
