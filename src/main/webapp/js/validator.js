@@ -1,19 +1,13 @@
 "use strict;"
 const inp_y = document.getElementById('input-y');
 
-const inp_r1 = document.getElementById('r1');
-const inp_r2 = document.getElementById('r2');
-const inp_r3 = document.getElementById('r3');
-const inp_r4 = document.getElementById('r4');
-const inp_r5 = document.getElementById('r5');
-
 const submitButton = document.getElementById('submit-button');
 const current_time = document.getElementById('current_time');
 const working_time = document.getElementById('working_time');
 const table = document.getElementById('check');
 const tbody = document.getElementById('results');
 var pred_btn = null;
-
+var rButtons = document.querySelectorAll(".r-button");
 
 var error_message = "";
 var x_value = null;
@@ -41,23 +35,7 @@ btns.forEach((btn) => {
 /* getting the Y and R values */
 
 function getData() {
-
     y_value = inp_y.value;
-    if (inp_r1.checked) {
-        r_value = inp_r1.value;
-    }
-    if (inp_r2.checked) {
-        r_value = inp_r2.value;
-    }
-    if (inp_r3.checked) {
-        r_value = inp_r3.value;
-    }
-    if (inp_r4.checked) {
-        r_value = inp_r4.value;
-    }
-    if (inp_r5.checked) {
-        r_value = inp_r5.value;
-    }
 }
 
 
@@ -93,6 +71,14 @@ function checkY() {
         return false;
     }
 }
+
+rButtons.forEach((btn) => {
+    btn.addEventListener("click", (event) => {
+        r_value = event.target.value;
+        console.log(event.target.value);
+    });
+})
+
 function checkR() {
     if (r_value != null) {
         return true;
@@ -227,4 +213,3 @@ function reload(){
     request.send()
 }
 
-reload()

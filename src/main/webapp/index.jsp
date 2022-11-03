@@ -9,24 +9,18 @@
     <link rel="stylesheet" href="styles/index.css">
     <link rel="icon" href="styles/icon.png">
     <script src="js/validator.js" defer></script>
+    <script type="text/javascript" src="js/mouseEvent.js" defer></script>
 </head>
 
 
 <body>
-<table class="maintable" cellpadding="10" cellspacing="0" width="100%">
-    <tr class="graphics">
-        <td class="boxheaderl" colspan="2">Вариант 3167</td>
-        <td class="boxheaderr" colspan="1">Сухарева Софья, Р32131</td>
-    </tr>
-    <tr>
-        <td rowspan="4" align="center">
+        <div class="boxheaderl" colspan="2">Вариант 3167</div>
+        <div class="boxheaderr" colspan="1">Сухарева Софья, Р32131</div>
+        <div>
             <canvas id="graph" height="280" width="400">Что-то не так с вашим браузером :(</canvas>
             <script src="js/canvas.js"></script>
-        </td>
-        <td class="area">
-            <!--area here-->
-        </td>
-        <td>
+        </div>
+        <div class="x-select">
             Изменение X:
             <table class="x-select" id="x-select">
                 <tr>
@@ -45,65 +39,42 @@
                     <td><button class="x-button" id="x-3" name="x" value="-3">-3</button></td>
                 </tr>
             </table>
-        </td>
+        </div>
     </tr>
-    <tr>
-        <td class="area">
-            <!--area here-->
-        </td>
-        <td>
+    <div class="y-select">
             <label for="input-y">Изменение Y:</label>
             <div class="Y-text" id="Y">
                 <input id="input-y" placeholder="(-3; 5)">
             </div>
-        </td>
-    </tr>
-    <tr>
-        <td class="area">
-            <!--area here-->
-        </td>
-        <td class="inputz">Изменение R:<br>
-            <!-- radio -->
-            <input type="radio" id="r1" name="r" value="1">
+    </div>
+        <div class="inputz">Изменение R:<br>
+            <input type="radio" id="r1" name="r" value="1" class="r-button">
             <label for="r1"> 1</label><br>
-            <input type="radio" id="r2" name="r" value="2">
+            <input type="radio" id="r2" name="r" value="2" class="r-button">
             <label for="r2"> 2</label><br>
-            <input type="radio" id="r3" name="r" value="3">
+            <input type="radio" id="r3" name="r" value="3" class="r-button">
             <label for="r3"> 3</label><br>
-            <input type="radio" id="r4" name="r" value="4">
+            <input type="radio" id="r4" name="r" value="4" class="r-button">
             <label for="r4"> 4</label><br>
-            <input type="radio" id="r5" name="r" value="5">
+            <input type="radio" id="r5" name="r" value="5" class="r-button">
             <label for="r5"> 5</label><br>
-        </td>
-
-    </tr>
-    <tr>
-        <td class="area">
-            <!--area here-->
-        </td>
-        <td>
-            <button id="submit-button">Отправить</button>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="2">
-            <table id="check" class="table_check" align="center">
-                <tr class="table_header">
-                    <th align="left">X</th>
-                    <th align="left">Y</th>
-                    <th align="left">R</th>
-                    <th align="left">Результат</th>
-                    <th align="left">Текущее время</th>
-                    <th align="left">работа скрипта</th>
-                </tr>
-                <tbody id="results"></tbody>
-            </table>
-        </td>
-        <td width="30%">
-
-        </td>
-    </tr>
-</table>
+        </div>
+    <div>
+        <button id="submit-button">Отправить</button>
+    </div>
+    <div class="result-char">
+        <table id="check" class="table_check" align="center">
+            <tr class="table_header">
+                <th align="left">X</th>
+                <th align="left">Y</th>
+                <th align="left">R</th>
+                <th align="left">Результат</th>
+                <th align="left">Текущее время</th>
+                <th align="left">работа скрипта</th>
+            </tr>
+            <tbody id="results"></tbody>
+        </table>
+    </div>
 </body>
 
 </html>

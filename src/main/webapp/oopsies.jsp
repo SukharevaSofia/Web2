@@ -13,6 +13,6 @@
     <link rel="stylesheet" href="styles/index.css">
 </head>
 <body>
-    YOU SHOULD NOT BE HERE.
+    You shouldn't be here
 </body>
 </html>
