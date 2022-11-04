@@ -1,5 +1,8 @@
+
 <!DOCTYPE html>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="java.util.Collection" %>
+<%@ page import="beans.*" %>
 <jsp:useBean id="chartBean" class="beans.DataBean" scope="session" />
 <html>
 
@@ -72,8 +75,9 @@
                 <th align="left">Текущее время</th>
                 <th align="left">работа скрипта</th>
             </tr>
-            <tbody id="results"></tbody>
+            <%chartBean.%>
         </table>
+        //TODO: insert script for adding dots
     </div>
 </body>
 

@@ -1,6 +1,9 @@
 package beans;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class DataBean implements Serializable {
     public Double dataX;
@@ -59,4 +62,7 @@ public class DataBean implements Serializable {
     public void setWorkingTime(String workingTime) {
         this.workingTime = workingTime;
     }
+
+
+
 }
