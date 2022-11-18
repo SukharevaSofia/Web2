@@ -16,7 +16,7 @@ public class ControllerServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/oopsies.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/error.jsp").forward(request, response);
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -26,9 +26,13 @@ public class ControllerServlet extends HttpServlet {
         String y = request.getParameter("y");
         String R = request.getParameter("R");
 
-        if(x == null && y == null && R == null){
+        if (request.getParameter("restore") instanceof String){
+            getServletContext().getRequestDispatcher("/area-check-servlet").forward(request, response);
+        }
+        else if(x == null && y == null && R == null){
             getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
-        }else {
+        }
+        else {
             getServletContext().getRequestDispatcher("/area-check-servlet").forward(request, response);
         }
     }

@@ -1,18 +1,22 @@
 package beans;
 
-
-
 import java.util.Deque;
 import java.util.LinkedList;
 
-public class BeanChart {
+import java.io.Serializable;
+import com.google.gson.Gson;
+public class BeanChart implements Serializable {
     private Deque<DataBean> chartEl;
 
     public BeanChart() {
         chartEl = new LinkedList<>();
     }
 
-    public Deque<DataBean> getRaws() {
+    public Deque<DataBean> getChartEl() {
         return chartEl;
+    }
+    public String getJson(){
+        Gson gson = new Gson();
+        return gson.toJson(this.chartEl);
     }
 }

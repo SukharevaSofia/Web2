@@ -1,18 +1,17 @@
 "use strict;"
 const inp_y = document.getElementById('input-y');
 
-const submitButton = document.getElementById('submit-button');
 const current_time = document.getElementById('current_time');
 const working_time = document.getElementById('working_time');
 const table = document.getElementById('check');
 const tbody = document.getElementById('results');
-var pred_btn = null;
-var rButtons = document.querySelectorAll(".r-button");
+let pred_btn = null;
+let rButtons = document.querySelectorAll(".r-button");
 
-var error_message = "";
-var x_value = null;
-var y_value = null;
-var r_value = null;
+let error_message = "";
+let x_value = null;
+let y_value = null;
+let r_value = null;
 
 /* getting the X value */
 
@@ -91,67 +90,59 @@ function checkR() {
 
 
 /*response manegment function*/
-
-var Handler = function (request) {
-    console.log(request.responseText);
-    var response = JSON.parse(request.responseText);
-    if (response.valid == "true") {
-        updateTable(response);
-    }
-    else {
-        alert("Неправильно введены данные");
-    }
-
+function addDot(x, y, r, matched) {
+  const ctx = document.getElementById("graph").getContext("2d");
+  ctx.fillStyle = matched ? "green" : "red";
+  ctx.fillRect(200 + (x * 120) / r, 140 - (y * 120) / r, 2, 2);
 }
+const Handler = function (request) {
+    updateTable(JSON.parse(request.responseText));
+};
 
-var restoreHandler = function (request) {
+const restoreHandler = function (request) {
     const array = JSON.parse(request.responseText);
+    console.log(array)
     array.forEach((data) => {
-        updateTable(JSON.parse(data));
+        addDot(data.dataX, data.dataY, data.dataR, data.result);
     });
 };
 
 
 function updateTable(response) {
-    var row = document.createElement("tr");
-    var cell_x = document.createElement("td");
-    var cell_y = document.createElement("td");
-    var cell_R = document.createElement("td");
-    var cell_hit = document.createElement("td");
-    var cell_cur_time = document.createElement("td");
-    var cell_work_time = document.createElement("td")
+    const row = document.createElement("tr");
+    const cell_x = document.createElement("td");
+    const cell_y = document.createElement("td");
+    const cell_R = document.createElement("td");
+    const cell_hit = document.createElement("td");
+    const cell_cur_time = document.createElement("td");
+    const cell_work_time = document.createElement("td")
 
-    cell_x.innerHTML = response.x;
-    cell_y.innerHTML = response.y;
-    cell_R.innerHTML = response.R;
-    cell_hit.innerHTML = response.res ? "Попадание" : "Нет попадания";
+    cell_x.innerHTML = response.dataX;
+    cell_y.innerHTML = response.dataY;
+    cell_R.innerHTML = response.dataR;
+    cell_hit.innerHTML = response.result ? "попадание" : "промах";
+    cell_cur_time.innerHTML =  response.currentTime;
+    cell_work_time.innerHTML = response.workingTime + " мкс";
 
-    datems = (response.current_time * 1000);
-    obj = new Date(response.current_time * 1000)
-    hours = obj.getHours();
-    mins = obj.getMinutes();
-    sec = obj.getSeconds();
-    cell_cur_time.innerHTML =  hours + ":" + mins + ":" + sec;
-    cell_work_time.innerHTML = response.working_time + ' нс'
     row.appendChild(cell_x);
     row.appendChild(cell_y);
     row.appendChild(cell_R);
     row.appendChild(cell_hit);
     row.appendChild(cell_cur_time);
     row.appendChild(cell_work_time);
-    tbody.insertBefore(row, tbody.firstChild);
+    tbody.append(row, tbody.firstChild);
+    addDot(response.dataX, response.dataY, response.dataR, response.result);
 }
 
 
 /*Sending data to server*/
-
 function sendRequest(r_handler) {
-    var r_path = './controller-servlet?x='
+    const r_path = './controller-servlet?x='
         + x_value + '&y='
         + y_value + '&R='
         + r_value;
 
-    var request = new XMLHttpRequest();
+    const request = new XMLHttpRequest();
 
     request.open("POST", r_path, true);
     request.responseType = 'text';
@@ -170,7 +161,7 @@ function sendRequest(r_handler) {
 /* "Send" button */
 
 function sendData() {
-    error_message = "Неправильно введены данные";
+    error_message = "Неправильно введены данные 172";
     getData();
     console.log(x_value + ' ' + y_value + ' ' + r_value);
 
@@ -184,7 +175,6 @@ function sendData() {
     }
 }
 
-submitButton.addEventListener('click', sendData);
 
 function addDots(x, y, r){
     let coordinateX = x > 5 || x < -3? x: 200 + (x * 120)/r
@@ -207,9 +197,26 @@ function reload(){
     request.open("POST", path, true);
     request.onreadystatechange = () =>{
         if(request.readyState === 4 && request.status === 200){
-            console.log("reboot")
+            restoreHandler(request);
         }
     }
     request.send()
 }
+reload();
 
+document.getElementById('submit-button').addEventListener('click', sendData);
+document.getElementById("graph").onmouseup = function (event){
+    const r = r_value;
+    console.log(r_value)
+    if((r == 1)||(r==2)||(r==3)||(r==4)||(r==5)){
+        let x = (r * (event.offsetX - 200)/120).toFixed(3)
+        let y = (r * (140 - event.offsetY)/120).toFixed(3)
+        x_value=x;
+        y_value=y;
+        console.log(x, y, r);
+        sendRequest();
+    }
+    else{
+        alert("Выберете число R")
+    }
+}
