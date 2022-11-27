@@ -11,6 +11,10 @@ body{
 
 }
 
+#graph {
+    outline: 2px solid #12020D;
+}
+
 .active_btn {
     color: #12020D;
     background-color: #B49FCC;

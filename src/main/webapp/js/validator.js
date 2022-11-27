@@ -1,17 +1,21 @@
 "use strict;"
 const inp_y = document.getElementById('input-y');
 
-const current_time = document.getElementById('current_time');
-const working_time = document.getElementById('working_time');
-const table = document.getElementById('check');
 const tbody = document.getElementById('results');
-let pred_btn = null;
-let rButtons = document.querySelectorAll(".r-button");
+const rButtons = document.querySelectorAll(".r-button");
 
 let error_message = "";
 let x_value = null;
 let y_value = null;
-let r_value = null;
+const r_value = () => {
+    let value = null;
+    rButtons.forEach(
+        (button) => {
+            if (button.checked) {value = button.value;}
+        }
+    );
+    return value;
+};
 
 /* getting the X value */
 
@@ -73,13 +77,12 @@ function checkY() {
 
 rButtons.forEach((btn) => {
     btn.addEventListener("click", (event) => {
-        r_value = event.target.value;
         console.log(event.target.value);
     });
 })
 
 function checkR() {
-    if (r_value != null) {
+    if (r_value() != null) {
         return true;
     }
     else {
@@ -101,8 +104,8 @@ const Handler = function (request) {
 
 const restoreHandler = function (request) {
     const array = JSON.parse(request.responseText);
-    console.log(array)
     array.forEach((data) => {
+        updateTable(data);
         addDot(data.dataX, data.dataY, data.dataR, data.result);
     });
 };
@@ -121,8 +124,9 @@ function updateTable(response) {
     cell_y.innerHTML = response.dataY;
     cell_R.innerHTML = response.dataR;
     cell_hit.innerHTML = response.result ? "попадание" : "промах";
-    cell_cur_time.innerHTML =  response.currentTime;
-    cell_work_time.innerHTML = response.workingTime + " мкс";
+    //cell_cur_time.innerHTML =  response.currentTime;
+    cell_cur_time.innerHTML = (new Date(response.currentTime)).toLocaleTimeString();
+    cell_work_time.innerHTML = response.workingTime + " нс";
 
     row.appendChild(cell_x);
     row.appendChild(cell_y);
@@ -140,7 +144,7 @@ function sendRequest(r_handler) {
     const r_path = './controller-servlet?x='
         + x_value + '&y='
         + y_value + '&R='
-        + r_value;
+        + r_value();
 
     const request = new XMLHttpRequest();
 
@@ -163,7 +167,7 @@ function sendRequest(r_handler) {
 function sendData() {
     error_message = "Неправильно введены данные 172";
     getData();
-    console.log(x_value + ' ' + y_value + ' ' + r_value);
+    console.log(x_value + ' ' + y_value + ' ' + r_value());
 
     if (checkX() && checkY() && checkR())
     {
@@ -206,9 +210,9 @@ reload();
 
 document.getElementById('submit-button').addEventListener('click', sendData);
 document.getElementById("graph").onmouseup = function (event){
-    const r = r_value;
-    console.log(r_value)
-    if((r == 1)||(r==2)||(r==3)||(r==4)||(r==5)){
+    const r = r_value();
+    console.log(r);
+    if(r != null){
         let x = (r * (event.offsetX - 200)/120).toFixed(3)
         let y = (r * (140 - event.offsetY)/120).toFixed(3)
         x_value=x;

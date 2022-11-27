@@ -2,8 +2,8 @@
 <!DOCTYPE html>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.Collection" %>
-<%@ page import="beans.DataBean" %>
-<%@ page import="beans.BeanChart" %>
+<%@ page import="beans.TableRowBean" %>
+<%@ page import="beans.TableBean" %>
 <html>
 
 <head>
@@ -19,7 +19,7 @@
         <div class="boxheaderl" colspan="2">Вариант 3167</div>
         <div class="boxheaderr" colspan="1">Сухарева Софья, Р32131</div>
         <div>
-            <canvas id="graph" height="280" width="400">Что-то не так с вашим браузером :(</canvas>
+            <canvas id="graph" class="graph" height="280" width="400">Что-то не так с вашим браузером :(</canvas>
             <script src="js/canvas.js"></script>
         </div>
         <div class="x-select">
@@ -74,41 +74,11 @@
                 <th align="left">Текущее время</th>
                 <th align="left">работа скрипта</th>
             </tr>
-            <jsp:useBean id="table" class="beans.BeanChart" scope="session"/>
             <div id="result_table_container">
                 <tbody id="results">
-                <%
-                    if (table != null) {
-                        for (DataBean check : table.getChartEl()) {
-                %>
-                <tr>
-                    <td class="x"><%=check.getDataX()%>
-                    </td>
-                    <td class="y"><%=check.getDataY()%>
-                    </td>
-                    <td class="r"><%=check.getDataR()%>
-                    </td>
-                    <td class="hit" style='color:<%=(check.getResult() ? "#A1E8AF" : "#EFA9B3")%>'>
-                        <%= check.getResult() ? "попадание" : "промах" %>
-                    </td>
-                    <td><%=check.getCurrentTime()%>
-                    </td>
-                    <td><%=check.getWorkingTime()%>
-                    </td>
-                </tr>
-                <script>
-                    resetDots(<%=table.getChartEl()%>)
-                </script>
-                <%
-                        }
-                    }
-                %>
                 </tbody>
             </div>
         </table>
-
-        //TODO: insert script for adding dots
     </div>
 </body>
-
 </html>
