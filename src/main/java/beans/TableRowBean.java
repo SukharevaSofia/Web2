@@ -4,12 +4,12 @@ import com.google.gson.Gson;
 
 import java.io.Serializable;
 
-public final class TableRowBean implements Serializable {
+public final class TableRowBean implements Serializable{
     private double dataX;
     private double dataY;
     private double dataR;
     private boolean result;
-    private long currentTime;
+    public long currentTime;
     private long workingTime;
 
     public TableRowBean(){}
@@ -49,4 +49,5 @@ public final class TableRowBean implements Serializable {
     public String getJson(){
         return new Gson().toJson(this);
     }
+
 }

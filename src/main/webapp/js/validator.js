@@ -106,7 +106,6 @@ const restoreHandler = function (request) {
     const array = JSON.parse(request.responseText);
     array.forEach((data) => {
         updateTable(data);
-        addDot(data.dataX, data.dataY, data.dataR, data.result);
     });
 };
 
@@ -124,7 +123,6 @@ function updateTable(response) {
     cell_y.innerHTML = response.dataY;
     cell_R.innerHTML = response.dataR;
     cell_hit.innerHTML = response.result ? "попадание" : "промах";
-    //cell_cur_time.innerHTML =  response.currentTime;
     cell_cur_time.innerHTML = (new Date(response.currentTime)).toLocaleTimeString();
     cell_work_time.innerHTML = response.workingTime + " нс";
 
@@ -134,7 +132,8 @@ function updateTable(response) {
     row.appendChild(cell_hit);
     row.appendChild(cell_cur_time);
     row.appendChild(cell_work_time);
-    tbody.append(row, tbody.firstChild);
+    tbody.append(row, tbody.lastChild);
+
     addDot(response.dataX, response.dataY, response.dataR, response.result);
 }
 

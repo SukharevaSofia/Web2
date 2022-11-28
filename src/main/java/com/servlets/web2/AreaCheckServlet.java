@@ -9,6 +9,9 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.time.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import beans.*;
 
@@ -48,6 +51,7 @@ public final class AreaCheckServlet extends HttpServlet {
                 }
 
                 tableBean.addTableRowBean(tableRowBean);
+
                 request.getSession().setAttribute("table", tableBean);
                 request.getSession().setAttribute("check", tableRowBean);
                 sendBean(tableRowBean, response);
@@ -92,3 +96,4 @@ public final class AreaCheckServlet extends HttpServlet {
     }
 
 }
+
