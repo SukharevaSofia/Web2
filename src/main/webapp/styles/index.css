@@ -1,54 +1,77 @@
 * {
-    font-family: sans-serif;
-
+    font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",
+    Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
 }
 
 body{
     background-color: #EAD7D7;
 }
 
-.x-button{
+.header-left{
+    display: flex;
+    float: left;
+    justify-content: center; /* align horizontal */
+    align-items: center; /* align vertical */
+    float: left;
+    width: 30%;
+    height: 50px;
+    font-size:larger;
+    background-color: #491D44;
+    color: #FFFF
+}
 
+.header-middle{
+    display: flex;
+    justify-content: center; /* align horizontal */
+    align-items: center; /* align vertical */
+    float: left;
+    width: 40%;
+    height: 50px;
+    font-size:larger;
+    background-color: #491D44;
+    color: #FFFF
+}
+
+.header-right{
+    display: flex;
+    justify-content: center; /* align horizontal */
+    align-items: center; /* align vertical */
+    float: right;
+    width: 30%;
+    height: 50px;
+    font-size:larger;
+    background-color: #491D44;
+    color: #FFFF
 }
 
 #graph {
     outline: 2px solid #12020D;
+    float: left;
+    margin: 3% 3% 3% 8%;
 }
 
-.active_btn {
-    color: #12020D;
-    background-color: #B49FCC;
-}
-
-table.table_check   {
+table.table_check{
     width: 100%;
     font-size:large;
     background-color: #6D466B;
     color: #FFFFFF;
 }
 
-td.boxheaderr {
-
-    text-align:right;
-    font-family: sans-serif;
-    font-style: italic;
-    font-size:larger;
-
-    background-color: #491D44;
-    color: #FFFF
+.x-select{
+    float: left;
+    margin-left: 3%;
+    margin-right: 3%;
 }
-td.boxheaderl {
-
-    text-align:left;
-    font-family: sans-serif;
-    font-style: italic;
-    font-size:larger;
-
-    background-color: #491D44;
-    color: #FFF;
+.y-select{
+    float: left;
+    margin-left: 3%;
+    margin-right: 3%;
 }
-
-
-td.area{
-    width: 1%;
+.R-select{
+    float: left;
+    margin-left: 3%;
+    margin-right: 3%;
+}
+.submit{
+    float: bottom;
 }
