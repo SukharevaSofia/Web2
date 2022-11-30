@@ -32,7 +32,6 @@ label {
   padding: 0.6rem 1rem 0.8rem 3rem;
   position: relative;
   background: #EAD7D7;
-  #EAD7D7space: no-wrap;
   overflow: hidden;
   text-overflow: ellipsis;
   transition: all .15s ease;

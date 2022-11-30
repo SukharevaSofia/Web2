@@ -13,12 +13,21 @@ body{
     text-decoration: underline #491D44 ;
     margin-left: 1%;
 }
+.header{
+    display: flex;
+    float: none;
+    justify-content: center; /* align horizontal */
+    align-items: center; /* align vertical */
+    height: 50px;
+    font-size:larger;
+    background-color: #491D44;
+    color: #FFFF
+}
 .header-left{
     display: flex;
     float: left;
     justify-content: center; /* align horizontal */
     align-items: center; /* align vertical */
-    float: left;
     width: 30%;
     height: 50px;
     font-size:larger;

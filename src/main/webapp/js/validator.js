@@ -1,6 +1,5 @@
-"use strict;"
-const inp_y = document.getElementById('input-y');
 
+const inp_y = document.getElementById('input-y');
 const tbody = document.getElementById('results');
 const rButtons = document.querySelectorAll(".r-button");
 
@@ -145,7 +144,7 @@ function updateTable(response) {
 
 
 /*Sending data to server*/
-function sendRequest(r_handler) {
+function sendRequest() {
     const r_path = './controller-servlet?x='
         + x_value + '&y='
         + y_value + '&R='
@@ -176,7 +175,7 @@ function sendData() {
 
     if (checkX() && checkY() && checkR())
     {
-        sendRequest(Handler);
+        sendRequest();
     }
     else
     {
