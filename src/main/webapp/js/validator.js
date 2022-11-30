@@ -142,7 +142,6 @@ function updateTable(response) {
     addDot(response.dataX, response.dataY, response.dataR, response.result);
 }
 
-
 /*Sending data to server*/
 function sendRequest() {
     const r_path = './controller-servlet?x='
