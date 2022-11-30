@@ -20,7 +20,7 @@
 
 <body>
     <div class="header-left">Сухарева Софья Р32131</div>
-    <div class="header-middle"> TIME </div>
+    <div class="header-middle"> <span id ="clock"></span> </div>
     <div class="header-right">Вариант 3167</div>
     <br>
     <br>
@@ -31,7 +31,7 @@
     </div>
 
     <div class="R-select">
-        <div class="underlined-text">Изменение R:</div>
+        <div class="underlined-Rtext">Изменение R:</div>
         <br>
         <input type="radio" id="r1" name="r" value="1" class="r-button">
         <label for="r1"> 1</label><br>
@@ -45,36 +45,37 @@
         <label for="r5"> 5</label><br>
     </div>
 
-    <div class="x-select">
+    <div>
         <div class="underlined-text">Изменение X:</div>
         <table>
-            <tr>
+            <tr class="x-select">
                 <td><button class="x-button" role="button" id="x5" name="x" value="5">5</button></td>
                 <td ><button class="x-button" role="button" id="x4" name="x" value="4">4</button></td>
                 <td ><button class="x-button" role="button" id="x3" name="x" value="3">3</button></td>
             </tr>
-            <tr>
+            <tr class="x-select">
                 <td ><button class="x-button" role="button" id="x2" name="x" value="2">2</button></td>
                 <td ><button class="x-button" role="button" id="x1" name="x" value="1">1</button></td>
                 <td ><button class="x-button" role="button" id="x0" name="x" value="0">0</button></td>
             </tr>
-            <tr>
+            <tr class="x-select">
                 <td><button class="x-button" role="button" id="x-1" name="x" value="-1">-1</button></td>
                 <td><button class="x-button" role="button" id="x-2" name="x" value="-2">-2</button></td>
                 <td><button class="x-button" role="button" id="x-3" name="x" value="-3">-3</button></td>
             </tr>
+            <tr>
+                <td colspan="3" class="underlined-text">Изменение Y:</td>
+            </tr>
+            <tr class="y-select">
+                <td class="Y-text" colspan="3">
+                    <input id="input-y" class="Input-text" placeholder="(-3; 5)">
+                </td>
+            </tr>
         </table>
     </div>
-    <div class="y-select">
-        <div class="underlined-text">Изменение Y:</div>
-        <div class="Y-text" id="Y">
-                <label for="input-y" class="Input-label">(-3; 5)</label>
-                <input id="input-y" class="Input-text" placeholder="(-3; 5)">
-            </div>
-    </div>
-    <div class="submit">
-        <button id="submit-button">Отправить</button>
-    </div>
+    <br>
+    <button id="submit-button" class="submit">Отправить</button>
+    <br>
     <div class="result-char">
         <table id="check" class="table_check" align="center">
             <tr class="table_header">

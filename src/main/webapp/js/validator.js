@@ -4,6 +4,12 @@ const inp_y = document.getElementById('input-y');
 const tbody = document.getElementById('results');
 const rButtons = document.querySelectorAll(".r-button");
 
+//time
+setInterval(() => {
+    document.getElementById("clock").innerHTML = (new Date())
+        .toLocaleString("ru-RU", { dateStyle: "full", timeStyle: "medium" });
+}, 1000);
+
 let error_message = "";
 let x_value = null;
 let y_value = null;
@@ -123,7 +129,7 @@ function updateTable(response) {
     cell_y.innerHTML = response.dataY;
     cell_R.innerHTML = response.dataR;
     cell_hit.innerHTML = response.result ? "попадание" : "промах";
-    cell_cur_time.innerHTML = (new Date(response.currentTime)).toLocaleTimeString();
+    cell_cur_time.innerHTML = (new Date(response.currentTime)).toLocaleTimeString("ru-RU");
     cell_work_time.innerHTML = response.workingTime + " нс";
 
     row.appendChild(cell_x);

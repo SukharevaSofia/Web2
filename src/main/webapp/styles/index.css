@@ -6,7 +6,13 @@
 body{
     background-color: #EAD7D7;
 }
-
+.underlined-Rtext{
+    text-decoration: underline #491D44 ;
+}
+.underlined-text{
+    text-decoration: underline #491D44 ;
+    margin-left: 1%;
+}
 .header-left{
     display: flex;
     float: left;
@@ -60,10 +66,10 @@ table.table_check{
 .x-select{
     float: left;
     margin-left: 3%;
-    margin-right: 3%;
+    margin-right: 30%;
 }
 .y-select{
-    float: left;
+    width: 10%;
     margin-left: 3%;
     margin-right: 3%;
 }
@@ -71,7 +77,4 @@ table.table_check{
     float: left;
     margin-left: 3%;
     margin-right: 3%;
-}
-.submit{
-    float: bottom;
 }
