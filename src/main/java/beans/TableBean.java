@@ -3,8 +3,6 @@ package beans;
 import java.util.ArrayList;
 
 import java.io.Serializable;
-import java.util.Comparator;
-import java.util.List;
 
 import com.google.gson.Gson;
 public final class TableBean implements Serializable {

@@ -97,7 +97,7 @@ function checkR() {
 }
 
 
-/*response manegment function*/
+/*response manegment & dots function*/
 function addDot(x, y, r, matched) {
   const ctx = document.getElementById("graph").getContext("2d");
   ctx.fillStyle = matched ? "green" : "red";
@@ -105,6 +105,11 @@ function addDot(x, y, r, matched) {
 }
 const Handler = function (request) {
     updateTable(JSON.parse(request.responseText));
+    /*if(checkX()&&checkY()&&checkR()){
+        updateTable(JSON.parse(request.responseText));
+    }else {
+        alert("Значения не соответствуют требованиям!");
+    }*/
 };
 
 const restoreHandler = function (request) {
@@ -142,8 +147,9 @@ function updateTable(response) {
     addDot(response.dataX, response.dataY, response.dataR, response.result);
 }
 
+
 /*Sending data to server*/
-function sendRequest() {
+function sendRequest(r_handler) {
     const r_path = './controller-servlet?x='
         + x_value + '&y='
         + y_value + '&R='
@@ -168,13 +174,13 @@ function sendRequest() {
 /* "Send" button */
 
 function sendData() {
-    error_message = "Неправильно введены данные 172";
+    error_message = "Неправильно введены данные";
     getData();
     console.log(x_value + ' ' + y_value + ' ' + r_value());
 
     if (checkX() && checkY() && checkR())
     {
-        sendRequest();
+        sendRequest(Handler);
     }
     else
     {
@@ -182,7 +188,7 @@ function sendData() {
     }
 }
 
-
+/*
 function addDots(x, y, r){
     let coordinateX = x > 5 || x < -3? x: 200 + (x * 120)/r
     let coordinateY = y > 5 || y < -5 ? y: 140 - (y * 120)/r
@@ -196,7 +202,7 @@ function resetDots(request){
             addDots(dot.x, dot.y, dot.r)
         })
     }
-}
+}*/
 
 function reload(){
     const path="./controller-servlet?restore"

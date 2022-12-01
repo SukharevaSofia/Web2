@@ -36,6 +36,7 @@ public final class AreaCheckServlet extends HttpServlet {
         double x = Double.parseDouble(request.getParameter("x"));
         double y = Double.parseDouble(request.getParameter("y"));
         double R = Double.parseDouble(request.getParameter("R"));
+
         try {
             if (isValid(x,y,R)){
                 TableRowBean tableRowBean = new TableRowBean(x, y, R,
@@ -56,6 +57,7 @@ public final class AreaCheckServlet extends HttpServlet {
                 request.getSession().setAttribute("check", tableRowBean);
                 sendBean(tableRowBean, response);
             }else {
+                response.sendError(HttpServletResponse.SC_NOT_FOUND);
                 throw new NumberFormatException();
             }
 
@@ -65,7 +67,6 @@ public final class AreaCheckServlet extends HttpServlet {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
 
     }}
     private boolean isValid(final double x, final double y, final double R){
