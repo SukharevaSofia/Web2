@@ -104,6 +104,7 @@ function addDot(x, y, r, matched) {
   ctx.fillRect(200 + (x * 120) / r, 140 - (y * 120) / r, 2, 2);
 }
 const Handler = function (request) {
+    if(request.responseText)
     updateTable(JSON.parse(request.responseText));
     /*if(checkX()&&checkY()&&checkR()){
         updateTable(JSON.parse(request.responseText));

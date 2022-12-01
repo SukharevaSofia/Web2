@@ -8,10 +8,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.time.*;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 
 import beans.*;
 
@@ -58,7 +56,7 @@ public final class AreaCheckServlet extends HttpServlet {
                 sendBean(tableRowBean, response);
             }else {
                 response.sendError(HttpServletResponse.SC_NOT_FOUND);
-                throw new NumberFormatException();
+                throw new NumberFormatException("плохой ввод");
             }
 
         } catch (NumberFormatException e){
@@ -70,8 +68,12 @@ public final class AreaCheckServlet extends HttpServlet {
 
     }}
     private boolean isValid(final double x, final double y, final double R){
-        return ((x >= -3) && (x <= 5) && (y > -3) && (y < 5) &&
-                ((R == 1)||(R==2)||(R==3)||(R==4)||(R==5)));
+        final DecimalFormat form = new DecimalFormat("0.000");
+        return ((x >= -8) && (x <= 8) && (y > -5.7) && (y < 5.7) &&
+                ((R == 1)||(R==2)||(R==3)||(R==4)||(R==5)) &&
+                (x == Double.parseDouble(form.format(x))) &&
+                (y == Double.parseDouble(form.format(y))) &&
+                (R == Double.parseDouble(form.format(R))));
     }
     private boolean inArea(final double x, final double y, final double R){
         if((Math.abs(x) <= R)&&(Math.abs(y) <= R)){
