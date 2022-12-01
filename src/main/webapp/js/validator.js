@@ -106,11 +106,6 @@ function addDot(x, y, r, matched) {
 const Handler = function (request) {
     if(request.responseText)
     updateTable(JSON.parse(request.responseText));
-    /*if(checkX()&&checkY()&&checkR()){
-        updateTable(JSON.parse(request.responseText));
-    }else {
-        alert("Значения не соответствуют требованиям!");
-    }*/
 };
 
 const restoreHandler = function (request) {

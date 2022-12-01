@@ -17,7 +17,7 @@
 <body>
     <div class="header-left">Сухарева Софья Р32131</div>
     <div class="header-middle"> <span id ="clock"></span> </div>
-    <div class="header-right">Вариант 3167</div>
+    <div class="header-right">Вариант 3157</div>
     <br>
     <br>
     <br>

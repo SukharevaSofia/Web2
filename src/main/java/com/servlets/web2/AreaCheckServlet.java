@@ -30,10 +30,10 @@ public final class AreaCheckServlet extends HttpServlet {
             }
         }
         else {
-        final Instant startTime = Instant.now();
-        double x = Double.parseDouble(request.getParameter("x"));
-        double y = Double.parseDouble(request.getParameter("y"));
-        double R = Double.parseDouble(request.getParameter("R"));
+            final Instant startTime = Instant.now();
+            double x = Double.parseDouble(request.getParameter("x"));
+            double y = Double.parseDouble(request.getParameter("y"));
+            double R = Double.parseDouble(request.getParameter("R"));
 
         try {
             if (isValid(x,y,R)){
