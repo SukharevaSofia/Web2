@@ -22,11 +22,11 @@ public final class AreaCheckServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (request.getParameter("restore") != null) {
-            if (request.getSession().getAttribute("table") instanceof TableBean tableBean){
-                sendTable(tableBean, response);
+            if (request.getSession().getAttribute("table") instanceof Table table){
+                sendTable(table, response);
             }
             else {
-                sendTable(new TableBean(), response);
+                sendTable(new Table(), response);
             }
         }
         else {
@@ -37,23 +37,23 @@ public final class AreaCheckServlet extends HttpServlet {
 
         try {
             if (isValid(x,y,R)){
-                TableRowBean tableRowBean = new TableRowBean(x, y, R,
+                TableRow tableRow = new TableRow(x, y, R,
                         Instant.now().toEpochMilli(),
                         Duration.between(startTime, Instant.now()).toNanos(),
                         inArea(x,y,R));
 
-                final TableBean tableBean;
-                if (request.getSession().getAttribute("table") instanceof TableBean localTableBean){
-                    tableBean = localTableBean;
+                final Table table;
+                if (request.getSession().getAttribute("table") instanceof Table localTable){
+                    table = localTable;
                 } else {
-                    tableBean = new TableBean();
+                    table = new Table();
                 }
 
-                tableBean.addTableRowBean(tableRowBean);
+                table.addTableRow(tableRow);
 
-                request.getSession().setAttribute("table", tableBean);
-                request.getSession().setAttribute("check", tableRowBean);
-                sendBean(tableRowBean, response);
+                request.getSession().setAttribute("table", table);
+                request.getSession().setAttribute("check", tableRow);
+                sendBean(tableRow, response);
             }else {
                 response.sendError(HttpServletResponse.SC_NOT_FOUND);
                 throw new NumberFormatException("плохой ввод");
@@ -87,12 +87,12 @@ public final class AreaCheckServlet extends HttpServlet {
         }
         return false;
     }
-    private void sendBean(TableRowBean answer, HttpServletResponse response) throws IOException {
+    private void sendBean(TableRow answer, HttpServletResponse response) throws IOException {
         response.setHeader("CacheCache-Control", "no-cache");
         response.setContentType("application/json; charset=UTF-8");
         response.getWriter().println(answer.getJson());
     }
-    private void sendTable(TableBean answer, HttpServletResponse response) throws IOException {
+    private void sendTable(Table answer, HttpServletResponse response) throws IOException {
         response.setHeader("CacheCache-Control", "no-cache");
         response.setContentType("application/json; charset=UTF-8");
         response.getWriter().println(answer.getJson());

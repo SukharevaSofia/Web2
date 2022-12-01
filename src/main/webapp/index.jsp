@@ -2,8 +2,8 @@
 <!DOCTYPE html>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.Collection" %>
-<%@ page import="beans.TableRowBean" %>
-<%@ page import="beans.TableBean" %>
+<%@ page import="beans.TableRow" %>
+<%@ page import="beans.Table" %>
 <html>
 
 <head>

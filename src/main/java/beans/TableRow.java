@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 
 import java.io.Serializable;
 
-public final class TableRowBean implements Serializable{
+public final class TableRow implements Serializable{
     private double dataX;
     private double dataY;
     private double dataR;
@@ -12,8 +12,8 @@ public final class TableRowBean implements Serializable{
     public long currentTime;
     private long workingTime;
 
-    public TableRowBean(){}
-    public TableRowBean(double dataX, double dataY, double dataR, long current, long working, boolean result){
+    public TableRow(){}
+    public TableRow(double dataX, double dataY, double dataR, long current, long working, boolean result){
         this.dataX = dataX;
         this.dataY = dataY;
         this.dataR = dataR;
